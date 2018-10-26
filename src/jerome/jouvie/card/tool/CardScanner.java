@@ -43,7 +43,7 @@ public class CardScanner {
 		if (files == null) {
 			return;
 		}
-		Arrays.sort(files, Comparator.comparing(File::getName));
+		Arrays.sort(files, Comparator.comparing(f -> f.getName().toLowerCase()));
 		
 		for (File file : files) {
 			if (recursive && file.isDirectory()) {

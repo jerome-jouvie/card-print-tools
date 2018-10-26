@@ -306,17 +306,15 @@ public class CardPacker implements Runnable {
 		}
 		logger.log(" cut marks");
 		if (cutMarksFront) {
-			writeCutMarksOnSide(paper.frontTex, paper.grid,
-					cutCardFront ? WriteCardMode.CENTER : WriteCardMode.SCALE);
+			writeCutMarksOnSide(paper.frontTex, paper.grid, cutCardFront);
 		}
 		if (cutMarksBack && paper.backTex != null) {
-			writeCutMarksOnSide(paper.backTex, paper.grid,
-					cutCardBack ? WriteCardMode.CENTER : WriteCardMode.SCALE);
+			writeCutMarksOnSide(paper.backTex, paper.grid, cutCardBack);
 		}
 	}
 
-	private void writeCutMarksOnSide(ITexture side, PaperGrid grid, WriteCardMode mode) {
-		Size size = mode == WriteCardMode.CENTER ? cardSize : grid.cellSize;
+	private void writeCutMarksOnSide(ITexture side, PaperGrid grid, boolean cutCard) {
+		Size size = cutCard ? cardCutSize : cardSize;
 		int cutOffsetWidth = (size.width - grid.cellSize.width) / 2;
 		int cutOffsetHeight = (size.height - grid.cellSize.height) / 2;
 		
